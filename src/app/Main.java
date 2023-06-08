@@ -10,7 +10,11 @@ public class Main {
     static Scanner scanner;
 
     public static void main(String[] args) {
-        filterOption(getOption());
+        int choice = 0;
+        do {
+            choice = filterOption(getOption());
+        } while (choice != 0);
+
     }
 
     private static int getOption() {
@@ -18,12 +22,13 @@ public class Main {
                 Choose an option:
                 1 - order without delivery
                 2 - order with delivery
+                0 - quit
                 """);
         scanner = new Scanner(System.in);
         return scanner.nextInt();
     }
 
-    private static void filterOption(int option) {
+    private static int filterOption(int option) {
         switch (option) {
             case 1 -> {
                 OrderAController controller = new OrderAController();
@@ -34,5 +39,6 @@ public class Main {
                 controller.handleData();
             }
         }
+        return option;
     }
 }
