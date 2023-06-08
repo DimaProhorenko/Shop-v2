@@ -1,13 +1,13 @@
 package app;
 
 
+import app.controllers.FindOrderController;
 import app.database.DBConn;
 import app.controllers.OrderAController;
 import app.controllers.OrderBController;
+import app.entities.Order;
 
 import java.sql.Connection;
-import java.sql.SQLException;
-import java.sql.Statement;
 import java.util.Scanner;
 
 public class Main {
@@ -29,6 +29,7 @@ public class Main {
                 Choose an option:
                 1 - order without delivery
                 2 - order with delivery
+                3 - view order by  order number
                 0 - quit
                 """);
         scanner = new Scanner(System.in);
@@ -43,6 +44,10 @@ public class Main {
             }
             case 2 -> {
                 OrderBController controller = new OrderBController();
+                controller.handleData();
+            }
+            case 3 -> {
+                FindOrderController controller = new FindOrderController();
                 controller.handleData();
             }
         }
