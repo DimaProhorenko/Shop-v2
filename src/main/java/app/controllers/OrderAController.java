@@ -1,10 +1,12 @@
 package app.controllers;
 
 import app.base.BaseController;
+import app.database.DBConn;
 import app.models.OrderAModel;
 import app.utils.Constants;
 import app.utils.Rounder;
 import app.views.OrderView;
+import app.entities.Order;
 
 public class OrderAController implements BaseController{
 
@@ -18,8 +20,11 @@ public class OrderAController implements BaseController{
         view = new OrderView();
         data = getData();
         model = new OrderAModel();
-        costRounded = Rounder.roundValue(getOrderCost());
+        double cost = getOrderCost();
+        costRounded = Rounder.roundValue(cost);
         view.getOutput(formOutput());
+        DBConn.addOrder(new Order(Integer.parseInt(data[0]), Integer.parseInt(data[1]),
+                Double.parseDouble(data[2]), 0, cost));
     }
 
     private String[] getData() {

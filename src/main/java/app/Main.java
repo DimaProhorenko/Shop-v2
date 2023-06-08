@@ -1,8 +1,13 @@
 package app;
 
+
+import app.database.DBConn;
 import app.controllers.OrderAController;
 import app.controllers.OrderBController;
 
+import java.sql.Connection;
+import java.sql.SQLException;
+import java.sql.Statement;
 import java.util.Scanner;
 
 public class Main {
@@ -10,6 +15,8 @@ public class Main {
     static Scanner scanner;
 
     public static void main(String[] args) {
+        Connection connection = DBConn.connect();
+        DBConn.createShopTable();
         int choice = 0;
         do {
             choice = filterOption(getOption());

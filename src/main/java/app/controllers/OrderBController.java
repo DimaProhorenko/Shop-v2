@@ -1,6 +1,8 @@
 package app.controllers;
 
 import app.base.BaseController;
+import app.database.DBConn;
+import app.entities.Order;
 import app.models.OrderBModel;
 import app.utils.Constants;
 import app.utils.Rounder;
@@ -25,6 +27,9 @@ public class OrderBController implements BaseController {
 
         double deliveryCost = getDeliveryCost();
         deliveryCostRounded = Rounder.roundValue(deliveryCost);
+
+        DBConn.addOrder(new Order(Integer.parseInt(data[0]), Integer.parseInt(data[1]),
+                Double.parseDouble(data[2]), deliveryCost, orderCost));
 
         view.getOutput(formOutput());
     }
