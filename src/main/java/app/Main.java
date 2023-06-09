@@ -1,6 +1,7 @@
 package app;
 
 
+import app.controllers.AllOrdersController;
 import app.controllers.FindOrderController;
 import app.database.DBConn;
 import app.controllers.OrderAController;
@@ -28,6 +29,7 @@ public class Main {
                 1 - order without delivery
                 2 - order with delivery
                 3 - view order by  order number
+                4 - view all orders
                 0 - quit
                 """);
         scanner = new Scanner(System.in);
@@ -46,6 +48,10 @@ public class Main {
             }
             case 3 -> {
                 FindOrderController controller = new FindOrderController();
+                controller.handleData();
+            }
+            case 4 -> {
+                AllOrdersController controller = new AllOrdersController();
                 controller.handleData();
             }
         }
