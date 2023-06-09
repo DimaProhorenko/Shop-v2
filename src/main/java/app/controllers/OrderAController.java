@@ -1,7 +1,6 @@
 package app.controllers;
 
 import app.base.BaseController;
-import app.database.DBConn;
 import app.models.OrderAModel;
 import app.utils.Constants;
 import app.utils.Rounder;
@@ -14,6 +13,7 @@ public class OrderAController implements BaseController{
     private OrderAModel model;
     private String[] data;
     private String costRounded;
+    private String orderAddingResult;
 
     @Override
     public void handleData() {
@@ -23,7 +23,7 @@ public class OrderAController implements BaseController{
         double cost = getOrderCost();
         costRounded = Rounder.roundValue(cost);
         view.getOutput(formOutput());
-        DBConn.addOrder(new Order(Integer.parseInt(data[0]), Integer.parseInt(data[1]),
+        orderAddingResult = model.addOrderToDB(new Order(Integer.parseInt(data[0]), Integer.parseInt(data[1]),
                 Double.parseDouble(data[2]), 0, cost));
     }
 
@@ -37,7 +37,7 @@ public class OrderAController implements BaseController{
     }
 
     private String formOutput() {
-        return "\nOrder " + data[0] + " cost is " + Constants.CURRENCY +
+        return orderAddingResult + "\nOrder " + data[0] + " cost is " + Constants.CURRENCY +
                 " " + costRounded;
     }
 }

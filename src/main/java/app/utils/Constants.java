@@ -19,4 +19,7 @@ public final class Constants {
     public static final String COLUMN_ORDERS_DELIVERY = "delivery";
     public static final String COLUMN_ORDERS_TOTAL = "total";
     public static final String CREATE_ORDERS_TABLE_QUERY = "CREATE TABLE IF NOT EXISTS orders (_id INTEGER PRIMARY KEY, number INTEGER, quantity INTEGER, price REAL, delivery REAL, total REAL)";
+
+    public static final String ORDER_ADDED_MSG = "Order#%d has been added successfully";
+    public static final String ORDER_NOT_ADD_MSG = "Couldn't add order";
 }

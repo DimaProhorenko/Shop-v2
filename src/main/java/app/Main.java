@@ -5,7 +5,6 @@ import app.controllers.FindOrderController;
 import app.database.DBConn;
 import app.controllers.OrderAController;
 import app.controllers.OrderBController;
-import app.entities.Order;
 
 import java.sql.Connection;
 import java.util.Scanner;
@@ -16,7 +15,6 @@ public class Main {
 
     public static void main(String[] args) {
         Connection connection = DBConn.connect();
-        DBConn.createShopTable();
         int choice = 0;
         do {
             choice = filterOption(getOption());

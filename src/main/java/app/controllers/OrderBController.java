@@ -15,6 +15,7 @@ public class OrderBController implements BaseController {
     private String[] data;
     private String orderCostRounded;
     private String deliveryCostRounded;
+    private String orderAddingResult;
 
     public void handleData() {
 
@@ -28,7 +29,7 @@ public class OrderBController implements BaseController {
         double deliveryCost = getDeliveryCost();
         deliveryCostRounded = Rounder.roundValue(deliveryCost);
 
-        DBConn.addOrder(new Order(Integer.parseInt(data[0]), Integer.parseInt(data[1]),
+        orderAddingResult = model.addOrderToDB(new Order(Integer.parseInt(data[0]), Integer.parseInt(data[1]),
                 Double.parseDouble(data[2]), deliveryCost, orderCost));
 
         view.getOutput(formOutput());
@@ -49,7 +50,7 @@ public class OrderBController implements BaseController {
     }
 
     private String formOutput() {
-        return "\nOrder " + data[0] + " cost is " + Constants.CURRENCY +
+        return orderAddingResult + "\nOrder " + data[0] + " cost is " + Constants.CURRENCY +
                 " " + orderCostRounded + "\nDelivery cost is " + Constants.CURRENCY +
                 " " + deliveryCostRounded;
     }
